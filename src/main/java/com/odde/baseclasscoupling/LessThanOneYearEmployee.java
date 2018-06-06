@@ -4,17 +4,17 @@ import java.time.LocalDate;
 
 public class LessThanOneYearEmployee extends Employee {
 
-    private DebugHelperWrapper debugHelperWrapper = new DebugHelperWrapper();
-    private LessThanOneYearEmployeeImpl impl = new LessThanOneYearEmployeeImpl(this, debugHelperWrapper);
-
     public double getYearlyBonus()
     {
-        return impl.getYearlyBonus();
+        DebugHelper.Info("--get yearly bonus--");
+        double salary = this.getMonthlySalary();
+        DebugHelper.Info(String.format("id:%d, his monthly salary is:%d", getId(), salary));
+        return this.workingYear() * salary;
     }
 
-    protected double workingYear()
+    private double workingYear()
     {
-        debugHelperWrapper.info("--get working year--");
+        DebugHelper.Info("--get working year--");
 
         double year = Math.round(1.0d * LocalDate.now().until(getStartWorkingDate()).getDays() / 365);
         return year > 1 ? 1 : year;
