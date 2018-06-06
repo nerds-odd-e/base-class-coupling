@@ -8,7 +8,7 @@ public abstract class Employee {
 
     protected double getMonthlySalary()
     {
-        DebugHelper.Info(String.format("query monthly salary id:%d", id));
+        DebugHelper.info(String.format("query monthly salary id:%d", id));
         return SalaryRepo.get(this.id);
     }
 
